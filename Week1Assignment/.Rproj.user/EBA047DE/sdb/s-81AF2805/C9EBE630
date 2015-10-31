@@ -1,0 +1,17 @@
+{
+    "contents" : "#1. Write a loop that calculates 12-factorial\nfactorial <- function(x)\n{\n  y <- 1\n  for(i in 1:x)\n  {\n    y <-y*((1:x)[i])\n  }\n  print(y)\n}\nfactorial(12)\n\n#2. Show how to create a numeric vector that contains the sequence from 20 to 50 by 5.\nseq(20, 50, 5)\n\n#3. Show how to take a trio of input numbers a, b, and c and implement the quadratic equation\n\ngetQuadratic <- function(a,b,c)\n{\n\n  if((b^2)-(4*a*c)>=0)\n  {\n    eq1 <-((-1*b)+sqrt((b^2)-(4*a*c)))/(2*a)\n    eq2 <- ((-1*b)-sqrt((b^2)-(4*a*c)))/(2*a)\n    result <- c(eq1, eq2)\n    result\n  }\n  else cat(\"Can't Compute the Sqrt of a negative number\")\n}\n\ngetQuadratic(2, -6, -8)\n\n",
+    "created" : 1446315917921.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3007945196",
+    "id" : "C9EBE630",
+    "lastKnownWriteTime" : 1446315999,
+    "path" : "~/GitHub/r-assignment/Week1Assignment/R/Week1-Assignment.R",
+    "project_path" : "R/Week1-Assignment.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
