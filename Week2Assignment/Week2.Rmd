@@ -1,0 +1,53 @@
+---
+title: "Week 2 R Assignment"
+author: "Chirag Vithalani"
+date: "November 1, 2015"
+output: html_document
+---
+
+In probability, “n choose r” means n! / (( n – r)! * r!).
+Task is to write your own variation of the choose() function, that does not use either of these functions. 
+
+```{r}
+
+#function to caculate factorial
+
+factorial <- function(x)
+{
+	y <- 1
+	for( i in 1:x )
+	{
+		
+		y <- y * ( (1:x)[i] )
+	}
+	return(y)
+}
+
+#function to caculate n choose r
+
+ncr <- function(n,r)
+{
+  if(!is.numeric(n) || !is.numeric(r) || (n <= 0) || (r <= 0) ||  n < r)
+  {
+    result <- "Please enter two integer values and n should be greater than or equal to r"
+  }
+  else if(n==r)
+  {
+    result <- 1
+  }
+  else
+  {
+    result <- factorial(n) / (factorial(r) * factorial(n-r))
+  }
+  return(result)
+}
+
+print(ncr(5,3))
+print(ncr(3,5))
+print(ncr(5,5))
+```
+
+
+
+
+
