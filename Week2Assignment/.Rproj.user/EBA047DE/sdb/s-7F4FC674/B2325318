@@ -1,0 +1,18 @@
+{
+    "contents" : "---\ntitle: \"Week 2 R Assignment\"\nauthor: \"Chirag Vithalani\"\ndate: \"November 1, 2015\"\noutput: html_document\n---\n\nIn probability, “n choose r” means n! / (( n – r)! * r!).\nTask is to write your own variation of the choose() function, that does not use either of these functions. \n\n```{r}\n\n#function to caculate factorial\n\nfactorial <- function(x)\n{\n\ty <- 1\n\tfor( i in 1:x )\n\t{\n\t\t\n\t\ty <- y * ( (1:x)[i] )\n\t}\n\treturn(y)\n}\n\n#function to caculate n choose r\n\nncr <- function(n,r)\n{\n  if(!is.numeric(n) || !is.numeric(r) || (n <= 0) || (r <= 0) ||  n < r)\n  {\n    result <- \"Please enter two integer values and n should be greater than or equal to r\"\n  }\n  else if(n==r)\n  {\n    result <- 1\n  }\n  else\n  {\n    result <- factorial(n) / (factorial(r) * factorial(n-r))\n  }\n  return(result)\n}\n\nprint(ncr(5,3))\n#returns =>[1] 10\nprint(ncr(3,5))\n#returns =>[1] \"Please enter two integer values and n should be greater than or equal to r\"\nprint(ncr(5,5))\n#returns => [1] 1\n```\n\n\n\n\n\n",
+    "created" : 1446435166573.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3451053394",
+    "id" : "B2325318",
+    "lastKnownWriteTime" : 1446947799,
+    "path" : "~/GitHub/r-assignment/Week2Assignment/Week2.Rmd",
+    "project_path" : "Week2.Rmd",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "type" : "r_markdown"
+}
