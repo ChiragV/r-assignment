@@ -1,0 +1,57 @@
+---
+title: "Week3"
+author: "Chirag Vithalani"
+date: "November 14, 2015"
+output: html_document
+---
+
+1.Read CSV
+[A] File Name to read
+[B] There is no header
+[C] "," is separator
+[D] A character vector of strings which are to be interpreted as "NA" (NOT Available or missing)
+
+```{r}
+mushr_full_df<-read.csv("https://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agaricus-lepiota.data", header= FALSE, sep=",",na.strings = "?")
+head (mushr_full_df)
+```
+
+
+```{r}
+mushr_dict <- read.table("C:\\temp\\m_dictionary.txt",row.names = 1, sep=":")
+head(mushr_dict)
+```
+Take the first column of dictionary and use it as the rows names of the data file
+```{r}
+names(mushr_full_df) <- row.names(mushr_dict)
+head(mushr_full_df)
+````
+Select “class” column and four others
+```{r}
+mushr_sub_df <- subset(mushr_full_df, select=c("class","cap-color","habitat", "ring-number","odor"))
+head(mushr_sub_df)
+```
+Create function to replace abrev. with its translation from data dictionary (uses gsub with regex)
+```{r}
+getTranslation <- function(a) {
+  return(sapply(1:nrow(mushr_sub_df), function(x)
+    gsub(paste('(^|.*,)(.*)=',mushr_sub_df[x,a],'.*',sep=""),"\\2",mushr_dict[a,1] )
+  ))
+}
+```
+
+
+```{r}
+mushr_translated_df <- sapply(colnames(mushr_sub_df), function(x) getTranslation(x))
+head(mushr_translated_df)
+```
+
+
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
