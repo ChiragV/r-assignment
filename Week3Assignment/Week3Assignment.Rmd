@@ -5,45 +5,51 @@ date: "November 14, 2015"
 output: html_document
 ---
 
-1.Read CSV
+#### Assignment =>
+##### Study the Mushrooms dataset and the associated description of the data (i.e. "data dictionary"). You may need to look around a bit, but it's there! You should take the data, and create a data frame with a subset of the columns (and if you like rows) in the dataset. You should include the column that indicates edible or poisonous and three or four other columns. You should also add meaningful column names and replace the abbreviations used in the data-for example, in the appropriate column, "e" might become "edible." Your deliverable is the R code to perform these transformation tasks.
+
+
+#### Solution =>
+
+Read CSV
 [A] File Name to read
 [B] There is no header
 [C] "," is separator
 [D] A character vector of strings which are to be interpreted as "NA" (NOT Available or missing)
 
 ```{r}
-mushr_full_df<-read.csv("https://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agaricus-lepiota.data", header= FALSE, sep=",",na.strings = "?")
-head (mushr_full_df)
+mushroom_full_dataFile<-read.csv("https://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agaricus-lepiota.data", header= FALSE, sep=",",na.strings = "?")
+head (mushroom_full_dataFile)
 ```
 
 
 ```{r}
-mushr_dict <- read.table("./data_dictionary.txt",row.names = 1, sep=":")
-head(mushr_dict)
+mushroom_dictionay <- read.table("./data_dictionary.txt",row.names = 1, sep=":")
+head(mushroom_dictionay)
 ```
 Take the first column of dictionary and use it as the rows names of the data file
 ```{r}
-names(mushr_full_df) <- row.names(mushr_dict)
-head(mushr_full_df)
+names(mushroom_full_dataFile) <- row.names(mushroom_dictionay)
+head(mushroom_full_dataFile)
 ````
 Select a class column and four others
 ```{r}
-mushr_sub_df <- subset(mushr_full_df, select=c("class","cap-color","habitat", "ring-number","odor"))
-head(mushr_sub_df)
+mushroom_sub_df <- subset(mushroom_full_dataFile, select=c("class","cap-color","habitat", "ring-number","odor"))
+head(mushroom_sub_df)
 ```
 Create function to replace abbreviation with its translation from data dictionary (uses gsub with regex)
 ```{r}
 getTranslation <- function(a) {
-  return(sapply(1:nrow(mushr_sub_df), function(x)
-    gsub(paste('(^|.*,)(.*)=',mushr_sub_df[x,a],'.*',sep=""),"\\2",mushr_dict[a,1] )
+  return(sapply(1:nrow(mushroom_sub_df), function(x)
+    gsub(paste('(^|.*,)(.*)=',mushroom_sub_df[x,a],'.*',sep=""),"\\2",mushroom_dictionay[a,1] )
   ))
 }
 ```
 
 
 ```{r}
-mushr_translated_df <- sapply(colnames(mushr_sub_df), function(x) getTranslation(x))
-head(mushr_translated_df)
+mushroom_translated_df <- sapply(colnames(mushroom_sub_df), function(x) getTranslation(x))
+head(mushroom_translated_df)
 ```
 
 
