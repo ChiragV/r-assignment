@@ -1,0 +1,40 @@
+---
+title: "Week4"
+author: "Chirag Vithalani"
+date: "November 22, 2015"
+output: html_document
+---
+Problem :
+Exploratory Data Analysis in R. Choose an interesting dataset and use R graphics to describe the data. You may
+use base R graphics, or a graphics package of your choice. You should include at least one example of each of the
+following:
+1. histogram
+2. boxplot
+3. scatterplot
+
+Solution :
+
+Install required packages first
+
+```{r}
+install.packages("devtools", dependencies = TRUE, repos = "http://lib.stat.cmu.edu/R/CRAN/")
+library(RCurl)
+```
+I found "The California Test Score Data Set" intresting, so using that data and printing head
+```{r}
+caschooldata <- getURL("https://raw.github.com/vincentarelbundock/Rdatasets/master/csv/Ecdat/Caschool.csv")
+ca_school_data_csv <- read.csv(text = caschooldata, header = TRUE, stringsAsFactors = FALSE)
+head(ca_school_data_csv)
+```
+
+Print graphics
+
+```{r}
+hist(ca_school_data_csv$teachers, col = "lightblue", breaks = 100, main = "Number of Teachers in California Schools")
+four_counties_of_ca_school <- ca_school_data_csv [which(ca_school_data_csv$county == "Kings" |ca_school_data_csv$county == "Orange" |ca_school_data_csv$county == "Fresno" |ca_school_data_csv$county == "Yuba" ),]
+boxplot(enrltot~county, data = four_counties_of_ca_school, main = "Enrollment Totals in Four California Counties")
+
+plot(ca_school_data_csv$enrltot, ca_school_data_csv$teachers, main = "Enrollment Total vs. Number of Teachers")
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
