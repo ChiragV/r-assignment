@@ -22,7 +22,7 @@ library(RCurl)
 ```
 I found "The California Test Score Data Set" intresting, so using that data and printing head
 ```{r}
-caschooldata <- getURL("https://raw.github.com/vincentarelbundock/Rdatasets/master/csv/Ecdat/Caschool.csv")
+caschooldata <- getURL("https://raw.githubusercontent.com/karenweigandt/cuny-summer-bridge/master/Caschoolincolumns.csv")
 ca_school_data_csv <- read.csv(text = caschooldata, header = TRUE, stringsAsFactors = FALSE)
 head(ca_school_data_csv)
 ```
