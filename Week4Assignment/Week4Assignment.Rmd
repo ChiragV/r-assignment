@@ -22,19 +22,23 @@ library(RCurl)
 ```
 I found "The California Test Score Data Set" intresting, so using that data and printing head
 ```{r}
-caschooldata <- getURL("https://raw.githubusercontent.com/karenweigandt/cuny-summer-bridge/master/Caschoolincolumns.csv")
-ca_school_data_csv <- read.csv(text = caschooldata, header = TRUE, stringsAsFactors = FALSE)
-head(ca_school_data_csv)
+california_school_CSV <- getURL("https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/master/csv/Ecdat/Caschool.csv")
+california_school_data <- read.csv(text = california_school_CSV, header = TRUE, stringsAsFactors = FALSE)
+head(california_school_data)
 ```
 
 Print graphics
 
 ```{r}
-hist(ca_school_data_csv$teachers, col = "lightblue", breaks = 100, main = "Number of Teachers in California Schools")
-four_counties_of_ca_school <- ca_school_data_csv [which(ca_school_data_csv$county == "Kings" |ca_school_data_csv$county == "Orange" |ca_school_data_csv$county == "Fresno" |ca_school_data_csv$county == "Yuba" ),]
-boxplot(enrltot~county, data = four_counties_of_ca_school, main = "Enrollment Totals in Four California Counties")
+hist(california_school_data$teachers, col = "lightblue", breaks = 100, main = "Number of Teachers in California Schools")
+four_counties_of_california_school <- california_school_data [which(california_school_data$county == "Kings" |california_school_data$county == "Los Angeles" |california_school_data$county == "Kern" |california_school_data$county == "San Diego" ),]
+boxplot(enrltot~county, data = four_counties_of_california_school, main = "Total Enrollments in Four California Counties")
 
-plot(ca_school_data_csv$enrltot, ca_school_data_csv$teachers, main = "Enrollment Total vs. Number of Teachers")
+plot(california_school_data$enrltot, california_school_data$teachers, main = "Total Enrollment vs. Number of Teachers")
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Summary :
+
+Number of schools have smaller numbers of teachers
+
+

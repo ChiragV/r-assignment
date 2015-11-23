@@ -43,11 +43,11 @@ ncr <- function(n,r)
 }
 
 print(ncr(5,3))
-#returns =>[1] 10
+
 print(ncr(3,5))
-#returns =>[1] "Please enter two integer values and n should be greater than or equal to r"
+
 print(ncr(5,5))
-#returns => [1] 1
+
 ```
 
 
