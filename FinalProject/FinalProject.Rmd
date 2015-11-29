@@ -8,10 +8,10 @@ output: html_document
 Required variables
 
 ```{r include=FALSE}
-consumer_key<-"EeR30toLrNOqFWZXKdaMQsQHk"
-consumer_secret<-"fdtVBdG6hIUZUpT8ZAq96huIhIZ8rHDqiZyIbhS1FTzniApUl2"
-access_token<-"132916347-bs6C3Zrqx23TA7geqVOPy45859gPTDflNnRYzeUC"
-access_secret<-"cnpmUd76s1z8e8RlfWzvoD0JjHYeanLyH6mzAB2G4hrrs"
+consumer_key<-""
+consumer_secret<-""
+access_token<-""
+access_secret<-""
 
 ```
 Install required packages
