@@ -7,7 +7,7 @@ output: html_document
 
 Required variables
 
-```{r}
+```{r include=FALSE}
 consumer_key<-"EeR30toLrNOqFWZXKdaMQsQHk"
 consumer_secret<-"fdtVBdG6hIUZUpT8ZAq96huIhIZ8rHDqiZyIbhS1FTzniApUl2"
 access_token<-"132916347-bs6C3Zrqx23TA7geqVOPy45859gPTDflNnRYzeUC"
@@ -16,7 +16,7 @@ access_secret<-"cnpmUd76s1z8e8RlfWzvoD0JjHYeanLyH6mzAB2G4hrrs"
 ```
 Install required packages
 
-```{r}
+```{r results='hide', message=FALSE, warning=FALSE}
 install.packages(c("wordcloud","tm","twitteR","RCurl"),repos="http://cran.r-project.org")
 require(twitteR)
 require(RCurl)
