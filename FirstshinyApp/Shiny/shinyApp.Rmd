@@ -1,0 +1,49 @@
+---
+title: "shinyPresentation"
+author: "maloneypatr"
+date: "Wednesday, September 03, 2014"
+output:
+  ioslides_presentation:
+    self_contained: false
+    lib_dir: libs
+runtime: shiny
+---
+
+## Shiny Presentation
+
+This R Markdown presentation is made interactive using Shiny. The viewers of the presentation can change the assumptions underlying what's presented and see the results immediately. 
+
+To learn more, see [Interative Documents](http://rmarkdown.rstudio.com/authoring_shiny.html).
+
+## Slide with Interactive Plot
+
+```{r, echo=FALSE}
+library(shiny)
+shinyUI(fluidPage(
+  
+  # Application title
+  titlePanel("Shiny Text"),
+  
+  # Sidebar with controls to select a dataset and specify the
+  # number of observations to view
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("dataset", "Choose a dataset:", 
+                  choices = c("rock", "pressure", "cars")),
+      
+      numericInput("obs", "Number of observations to view:", 10)
+    ),
+    
+    # Show a summary of the dataset and an HTML table with the 
+   # requested number of observations
+    mainPanel(
+      verbatimTextOutput("summary"),
+      
+      tableOutput("view")
+    )
+  )
+))
+
+
+
+```

@@ -1,0 +1,74 @@
+---
+title: "Shiny Presentation"
+author: "Chirag Vithalani"
+date: "April 23, 2016"
+output: html_document
+runtime: shiny
+---
+
+
+```{r message=FALSE,echo=FALSE}
+
+suppressWarnings(library(tidyr))
+suppressWarnings(library(plotly))
+suppressWarnings(library(RCurl))
+#population<-read.csv("https://raw.githubusercontent.com/RobertSellers/crime_and_weather_study/master/data/Export/crimeANDweather_v1.csv", sep=",",na.strings = "NA",header = TRUE,stringsAsFactors = FALSE)
+
+x <- getURL("https://raw.githubusercontent.com/RobertSellers/crime_and_weather_study/master/data/Export/crimeANDweather_v1.csv")
+population <- read.csv(text = x, sep=",",na.strings = "NA",header = TRUE,stringsAsFactors = FALSE)
+
+population<- subset(population,(population$city=='Akron City' | population$city=='Ada County') & population$year >2005)
+
+
+#plot_ly(population, x = year, y = crimeRate, size = crimeRate,color = meanMaxF,opacity = meanMaxF, mode = "markers",colors ="Reds")
+
+#tidy<-subset(tidy,tidy$city=='New' & tidy$State=='NY')
+
+```
+
+
+```{r, echo=FALSE}
+
+
+shinyApp(
+  ui = 
+   fluidPage(
+     
+     
+      titlePanel("Temp V/s Crime"),
+
+  sidebarLayout(
+
+    sidebarPanel(
+      selectInput("select", label = h3("Select City"), 
+                       choices = population$city, selected = 1)),
+     mainPanel(
+      plotlyOutput("plot")
+    )
+
+   
+
+)),
+
+server <-
+  function(input, output) {
+
+   output$plot<-renderPlotly(
+     {
+        #selectedCity<-input$select
+        population<- subset(population,population$city==input$select & population$year >2005)
+       library(plotly)
+        plot_ly(population, x = year, y = crimeRate, size = crimeRate,color = meanMaxF,opacity = meanMaxF, mode = "markers",colors ="Reds")
+        #plot(cars,main=paste("You have selected", input$select))
+       
+       #plot_ly(midwest, x = percollege, color = state, type = "box")
+     
+     }
+    )
+    
+  }
+  
+)
+
+
+```
